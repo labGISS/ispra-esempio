@@ -1,0 +1,82 @@
+<div class="search-container">
+  <div class="form-result">
+    <h1>Cerca metadati</h1>
+    <form [formGroup]="formGroup" (ngSubmit)="search()">
+      <div formGroupName="parameters">
+        <div class="full-width">
+          <mat-form-field appearance="standard" style="width: 70%">
+            <mat-label>Testo</mat-label>
+            <input matInput type="text" formControlName="searchText" id="searchText">
+          </mat-form-field>
+          <mat-form-field appearance="standard" aria-labelledby="text-search-field-label">
+            <mat-label>Campo</mat-label>
+            <mat-select formControlName="searchField">
+              <mat-option value="any">Ovunque</mat-option>
+              <mat-option value="title">Titolo</mat-option>
+              <mat-option value="abstract">Descrizione</mat-option>
+              <mat-option value="lineage">Genealogia</mat-option>
+              <mat-option value="access_constraints">Limitazione d'uso</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <label id="text-search-type-label">Metodo di ricerca:</label>
+        <mat-radio-group
+          aria-labelledby="text-search-type-label"
+          class="example-radio-group"
+          formControlName="textSearchType">
+          <mat-radio-button class="example-radio-button" value="all">Tutte le parole</mat-radio-button>
+          <mat-radio-button class="example-radio-button" value="any">Almeno una parola</mat-radio-button>
+          <mat-radio-button class="example-radio-button" value="exact">Testo Esatto</mat-radio-button>
+        </mat-radio-group>
+
+        <mat-divider class="separator"></mat-divider>
+
+        <mat-form-field class="full-width" appearance="standard">
+          <mat-label>Parole Chiave</mat-label>
+          <mat-chip-list #chipList aria-label="Parole chiave"
+                         formControlName="keywords">
+            <mat-chip *ngFor="let keyword of formGroup.get('parameters.keywords').value" [selectable]="true"
+                      [removable]="true" (removed)="removeKeyword(keyword)">
+              {{keyword}}
+              <button matChipRemove>
+                <mat-icon>cancel</mat-icon>
+              </button>
+            </mat-chip>
+            <input
+              [matChipInputFor]="chipList"
+              [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+              [matChipInputAddOnBlur]="true"
+              (matChipInputTokenEnd)="addKeyword($event)">
+          </mat-chip-list>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button type="submit">Cerca</button>
+    </form>
+
+    <mat-divider class="separator"></mat-divider>
+    <div class="results-box" *ngIf="resultsList">
+      <h2>Risultati</h2>
+      <mat-paginator
+        [length]="resultsList.totalResults"
+        [pageSize]="resultsList.itemsPerPage"
+        [pageSizeOptions]="[10, 50, 100]"
+        (page)="search($event)"
+      >
+      </mat-paginator>
+      <div class="result-element"  *ngFor="let result of resultsList.records" >
+        <app-metadata-search-result-item (clickEvent)="resultClicked($event)" [element]="result"></app-metadata-search-result-item>
+      </div>
+    </div>
+  </div>
+
+    <div class="map" leaflet [leafletOptions]="leafletOptions"
+         [leafletFitBounds]="mapFitToBounds" [leafletFitBoundsOptions]="mapFitToBoundsOptions"
+         (leafletMapReady)="onMapReady($event)">
+      <div *ngIf="drawEnabled"
+           leafletDraw [leafletDrawOptions]="drawOptions"
+           (leafletDrawCreated)="onDrawCreated($event)" (leafletDrawEdited)="onDrawEdited($event)"
+           (leafletDrawDeleted)="reset()"></div>
+      <div [leafletLayer]="drawnItems" *ngIf="drawEnabled"></div>
+      <div *ngIf="bboxLayer" [leafletLayer]="bboxLayer"></div>
+    </div>
+</div>

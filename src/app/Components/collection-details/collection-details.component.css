@@ -1,0 +1,25 @@
+.container {
+  padding: 20px;
+}
+
+.map {
+  height: 600px;
+  width: 600px;
+  display: inline-block;
+}
+
+.form-content {
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 15px;
+  width: 55%;
+}
+
+.timepicker-container {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.form-control {
+  display: block;
+}

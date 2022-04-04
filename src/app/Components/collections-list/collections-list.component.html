@@ -1,0 +1,5 @@
+<h1>Collections</h1>
+<mat-nav-list>
+  <a mat-list-item [routerLink]="['/collection', collection.id]" *ngFor="let collection of collections"> {{ collection.title }} </a>
+<!--  <a mat-list-item (click)="datasetSelected.emit(collection.id)" *ngFor="let collection of collections"> {{ collection.title }} </a>-->
+</mat-nav-list>

@@ -1,0 +1,29 @@
+<!--<div class="container">-->
+<div class="map" leaflet [leafletOptions]="leafletOptions"
+     [leafletFitBounds]="mapFitToBounds" [leafletFitBoundsOptions]="mapFitToBoundsOptions"
+     (leafletMapReady)="onMapReady($event)">
+  <div [leafletLayer]="drawnItems" *ngIf="drawEnabled"></div>
+  <div *ngIf="bboxLayer" [leafletLayer]="bboxLayer"></div>
+</div>
+
+<div class="form-content">
+  <div><span class="mat-title">{{data.title}}</span> (<span class="mat-body">{{data.id}}</span>)</div>
+  <div>
+    <mat-chip-list>
+      <mat-chip color="accent" *ngFor="let word of data.keywords">{{word}}</mat-chip>
+    </mat-chip-list>
+  </div>
+
+  <div style="padding: 20px 0" class="mat-body">
+    {{data.description}}
+  </div>
+
+  <div class="mat-body-2">Links</div>
+  <mat-nav-list>
+    <a mat-list-item *ngFor="let link of data.links" [href]="link.href">{{link.title}}</a>
+    <!--  <a mat-list-item (click)="datasetSelected.emit(collection.id)" *ngFor="let collection of collections"> {{ collection.title }} </a>-->
+    <a mat-list-item [routerLink]="['/collection', data.id, 'items']">Visualizza</a>
+  </mat-nav-list>
+</div>
+
+<!--</div>-->

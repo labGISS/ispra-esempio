@@ -1,0 +1,8 @@
+.small-chip {
+  height: 20px !important;
+  margin: 5px;
+}
+
+.clickable {
+  cursor: pointer;
+}

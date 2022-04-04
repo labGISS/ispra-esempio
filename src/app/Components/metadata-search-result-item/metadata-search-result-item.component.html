@@ -1,0 +1,46 @@
+<mat-card>
+  <div class="clickable" (click)="onCardClick($event)">
+    <mat-card-subtitle>
+      <span class="mat-body-2">{{element.hierarchyLevel | uppercase}}</span>
+    </mat-card-subtitle>
+    <mat-card-title>
+      {{element.title}}
+    </mat-card-title>
+    <mat-card-subtitle>
+      <span class="mat-caption" style="padding: 10px 0"> Ultimo Aggiornamento | {{element.updated | date}}</span>
+    </mat-card-subtitle>
+  </div>
+  <mat-divider></mat-divider>
+
+  <mat-card-content>
+    <p class="mat-h4" style="padding: 10px 0"> {{element.summary}} </p>
+    <p>
+      <span class="mat-body-2">Responsabile dataset </span>
+      {{element.responsibleOfData}}
+      (<a style="cursor: pointer" (click)="expand = !expand">Dettagli</a>)
+      <mat-expansion-panel [expanded]="expand" class="mat-elevation-z1">
+        <span class="mat-body-2">Nome</span> {{element.pointOfContactOfData.name}}<br>
+        <span class="mat-body-2">Email </span> <a [href]="'mailto:'+element.pointOfContactOfData.email">{{element.pointOfContactOfData.email}}</a><br>
+        <span class="mat-body-2">Telefono</span> {{element.pointOfContactOfData.phone}}<br>
+      </mat-expansion-panel>
+
+    <div>
+      <span class="mat-body-2">Keywords</span>
+      <mat-chip  class="small-chip" color="accent" *ngFor="let word of element.keywords">{{word}}</mat-chip>
+    </div>
+  </mat-card-content>
+
+  <mat-divider></mat-divider>
+
+  <mat-card-actions>
+    <button mat-button [matMenuTriggerFor]="detailsMenu">Dettagli</button>
+    <mat-menu #detailsMenu="matMenu">
+      <button mat-menu-item (click)="goToLink(link.href)" *ngFor="let link of detailsLinks">{{LABELS_STRINGS[link.labelKey]}}</button>
+    </mat-menu>
+
+    <button mat-button [matMenuTriggerFor]="servicesMenu" *ngIf="servicesLinks.length > 0">Servizi</button>
+    <mat-menu #servicesMenu="matMenu">
+      <button mat-menu-item (click)="goToLink(link.href)" *ngFor="let link of servicesLinks">{{LABELS_STRINGS[link.labelKey]}}</button>
+    </mat-menu>
+  </mat-card-actions>
+</mat-card>

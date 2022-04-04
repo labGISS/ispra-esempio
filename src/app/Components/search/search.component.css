@@ -1,0 +1,32 @@
+.full-width {
+  width: 100%;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+
+.separator {
+  margin: 20px 0;
+}
+
+.result-element {
+  padding: 10px;
+}
+
+.map {
+  height: 600px;
+}
+
+.search-container {
+  height: 100%;
+}
+
+.form-result {
+  width: 50%;
+  height: 600px;
+  margin-right: 2%;
+  float: left;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

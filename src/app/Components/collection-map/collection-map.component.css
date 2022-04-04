@@ -1,0 +1,93 @@
+.container {
+  padding: 20px;
+}
+
+.map {
+  height: 600px;
+  width: 600px;
+}
+
+.form-content {
+  display: inline-block;
+  vertical-align: top;
+  padding-left: 15px;
+  width: 55%;
+}
+
+.timepicker-container {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.form-control {
+  display: block;
+}
+
+.timeline-slider {
+  width: 100%;
+}
+
+.slider-icon {
+  vertical-align: middle;
+}
+
+/*.mat-column-fid {*/
+/*  width: 16px;*/
+/*  padding: 12px;*/
+/*  text-align: center;*/
+/*}*/
+
+/*.mat-column-geom {*/
+/*  width: 16px;*/
+/*  padding: 12px;*/
+/*  text-align: center;*/
+/*}*/
+
+/*.mat-column-sampledFeature {*/
+/*  width: 32px;*/
+/*  padding: 12px;*/
+/*  text-align: center;*/
+/*}*/
+
+/*.mat-column-inletHeight {*/
+/*  width: 32px;*/
+/*  padding: 12px;*/
+/*  text-align: center;*/
+/*}*/
+
+/*.celll {
+  min-width: 32px;
+  padding: 0 12px;
+  text-align: center;
+}*/
+
+/*
+.mat-table {
+  overflow-x: scroll;
+  width: 600px;
+}
+
+
+.mat-row,
+.mat-header-row {
+  display: table-row;
+}
+*/
+
+.mat-cell,
+.mat-header-cell {
+  word-wrap: initial;
+  display: table-cell;
+  padding: 0px 10px;
+  line-break: unset;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+}
